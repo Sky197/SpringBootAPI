@@ -1,14 +1,13 @@
 package xyz.dev.entity;
 
 import javax.persistence.*;
-import java.io.Serializable;
-
 
 @Entity(name = "CLIENT")
 public class ClientEntity {
 
-    @EmbeddedId
-    private ClientPKEntity clientPKEntity;
+    @Id
+    @Column(unique = true, name = "CLI_DOCUMENT", nullable = false)
+    private String document;
 
     @Column(name = "CLI_PHONE", nullable = false)
     private String cellphone;
@@ -19,30 +18,12 @@ public class ClientEntity {
     @Column(name = "CLI_NAME", nullable = false)
     private String name;
 
-    @Embeddable
-    public class ClientPKEntity implements Serializable {
-        @Column(unique = true, name = "CLI_DOCUMENT", nullable = false)
-        private String document;
-
-        public ClientPKEntity(String document) {
-            this.document = document;
-        }
-
-        public String getDocument() {
-            return document;
-        }
-
-        public void setDocument(String document) {
-            this.document = document;
-        }
+    public String getDocument() {
+        return document;
     }
 
-    public ClientPKEntity getClientPKEntity() {
-        return clientPKEntity;
-    }
-
-    public void setClientPKEntity(ClientPKEntity clientPKEntity) {
-        this.clientPKEntity = clientPKEntity;
+    public void setDocument(String document) {
+        this.document = document;
     }
 
     public String getCellphone() {
@@ -68,6 +49,4 @@ public class ClientEntity {
     public void setName(String name) {
         this.name = name;
     }
-
-
 }
