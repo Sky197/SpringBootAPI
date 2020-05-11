@@ -1,0 +1,20 @@
+{
+  "name": "fernando",
+  "cellphone": "11000000000",
+  "mail": "email@email.com",
+  "document": "123456789",
+  "petList": [
+    {
+      "name": "pet1",
+      "size": "1m",
+      "age": 7,
+      "lastVaccine": "22-02-2020"
+    },
+    {
+      "name": "pet2",
+      "size": "1m",
+      "age": 2,
+      "lastVaccine": "22-02-2020"
+    }
+  ]
+}
