@@ -2,9 +2,9 @@ package xyz.dev.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -14,9 +14,6 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.util.Properties;
 
 @Configuration
 public class DatabaseConfig {
@@ -29,7 +26,6 @@ public class DatabaseConfig {
     private String password;
     @Value("${spring.datasource.driver-class-name}")
     private String driver;
-
     @Value("${packages-to-scan}")
     private String packages;
 
@@ -53,7 +49,6 @@ public class DatabaseConfig {
         em.setJpaVendorAdapter(jpaVendorAdapter);
         return em;
     }
-
 
     @Bean
     PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
