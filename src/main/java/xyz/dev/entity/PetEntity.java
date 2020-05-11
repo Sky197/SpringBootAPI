@@ -1,15 +1,16 @@
 package xyz.dev.entity;
 
-import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
+import javax.persistence.*;
 
-@Entity(name = "CLIENT_PET")
+@Entity
+@Table(name = "PET")
 public class PetEntity {
 
-    @EmbeddedId
-    private ClientEntity.ClientPKEntity pk;
+    @ManyToOne
+    @JoinColumn(name = "CLI_DOCUMENT")
+    private ClientEntity clientEntity;
 
+    @Id
     @Column(name = "PET_NAME", nullable = false)
     private String name;
 
@@ -22,12 +23,12 @@ public class PetEntity {
     @Column(name = "PET_LAST_VACCINE")
     private String lastVaccine;
 
-    public ClientEntity.ClientPKEntity getPk() {
-        return pk;
+    public ClientEntity getClientEntity() {
+        return clientEntity;
     }
 
-    public void setPk(ClientEntity.ClientPKEntity pk) {
-        this.pk = pk;
+    public void setClientEntity(ClientEntity clientEntity) {
+        this.clientEntity = clientEntity;
     }
 
     public String getName() {

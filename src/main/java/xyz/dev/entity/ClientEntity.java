@@ -1,8 +1,10 @@
 package xyz.dev.entity;
 
 import javax.persistence.*;
+import java.util.Set;
 
-@Entity(name = "CLIENT")
+@Entity
+@Table(name = "CLIENT")
 public class ClientEntity {
 
     @Id
@@ -17,6 +19,9 @@ public class ClientEntity {
 
     @Column(name = "CLI_NAME", nullable = false)
     private String name;
+
+    @OneToMany(mappedBy = "clientEntity", cascade = CascadeType.ALL)
+    private Set<PetEntity> pet;
 
     public String getDocument() {
         return document;
@@ -48,5 +53,13 @@ public class ClientEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Set<PetEntity> getPet() {
+        return pet;
+    }
+
+    public void setPet(Set<PetEntity> pet) {
+        this.pet = pet;
     }
 }
