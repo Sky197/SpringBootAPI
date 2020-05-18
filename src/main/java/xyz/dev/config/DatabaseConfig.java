@@ -2,7 +2,6 @@ package xyz.dev.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -14,21 +13,9 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.util.Properties;
 
 @Configuration
 public class DatabaseConfig {
-
-    @Value("${spring.datasource.url}")
-    private String url;
-    @Value("${spring.datasource.username}")
-    private String username;
-    @Value("${spring.datasource.password}")
-    private String password;
-    @Value("${spring.datasource.driver-class-name}")
-    private String driver;
 
     @Value("${packages-to-scan}")
     private String packages;
@@ -36,10 +23,10 @@ public class DatabaseConfig {
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSourceBuilder = new DriverManagerDataSource();
-        dataSourceBuilder.setDriverClassName(driver);
-        dataSourceBuilder.setUsername(username);
-        dataSourceBuilder.setPassword(password);
-        dataSourceBuilder.setUrl(url);
+        dataSourceBuilder.setDriverClassName(System.getenv("DB_DRIVER"));
+        dataSourceBuilder.setUsername(System.getenv("DB_USER"));
+        dataSourceBuilder.setPassword(System.getenv("DB_PASSWORD"));
+        dataSourceBuilder.setUrl(System.getenv("DATABASE_URL"));
         return dataSourceBuilder;
     }
 
@@ -53,7 +40,6 @@ public class DatabaseConfig {
         em.setJpaVendorAdapter(jpaVendorAdapter);
         return em;
     }
-
 
     @Bean
     PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
