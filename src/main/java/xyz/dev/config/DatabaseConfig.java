@@ -26,7 +26,7 @@ public class DatabaseConfig {
         dataSourceBuilder.setDriverClassName(System.getenv("DB_DRIVER"));
         dataSourceBuilder.setUsername(System.getenv("DB_USER"));
         dataSourceBuilder.setPassword(System.getenv("DB_PASSWORD"));
-        dataSourceBuilder.setUrl(System.getenv("DATABASE_URL"));
+        dataSourceBuilder.setUrl(System.getenv("JDBC_DB_URL"));
         return dataSourceBuilder;
     }
 
