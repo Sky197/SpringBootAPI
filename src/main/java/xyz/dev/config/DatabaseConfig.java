@@ -13,6 +13,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
+import java.util.Properties;
 
 @Configuration
 public class DatabaseConfig {
@@ -38,6 +39,7 @@ public class DatabaseConfig {
         em.setPackagesToScan(packages);
         JpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(jpaVendorAdapter);
+        em.setJpaProperties(getProperties());
         return em;
     }
 
@@ -49,4 +51,13 @@ public class DatabaseConfig {
     }
 
 
+    public Properties getProperties() {
+        Properties properties = new Properties();
+        properties.setProperty("hibernate.hbm2ddl.auto", "validate");
+        properties.setProperty("hibernate.show_sql", "true");
+        properties.setProperty("hibernate.dialect", System.getenv("DB_DIALECT"));
+        properties.setProperty("hibernate.hbm2ddl.auto", "validate");
+
+        return properties;
+    }
 }
