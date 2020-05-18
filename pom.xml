@@ -10,8 +10,8 @@
 	</parent>
 	<groupId>xyz.dev</groupId>
 	<artifactId>dev</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>dev</name>
+	<version>0.0.2-SNAPSHOT</version>
+	<name>app</name>
 	<description> Spring Boot</description>
 
 	<properties>
