@@ -20,7 +20,6 @@ public class DatabaseConfig {
 
     @Value("${packages-to-scan}")
     private String packages;
-
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSourceBuilder = new DriverManagerDataSource();
@@ -54,11 +53,9 @@ public class DatabaseConfig {
     public Properties getProperties() {
         Properties properties = new Properties();
         properties.setProperty("hibernate.hbm2ddl.auto", "create");
-        properties.setProperty("hibernate.show_sql", "true");
-        properties.setProperty("hibernate.hbm2ddl.auto", "create");
+        properties.setProperty("hibernate.show_sql", "false");
         properties.setProperty("hibernate.dialect", System.getenv("DB_DIALECT"));
         properties.setProperty("hibernate.default_schema",System.getenv("DB_SCHEMA"));
-
         return properties;
     }
 }

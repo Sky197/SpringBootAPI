@@ -8,8 +8,8 @@ public class ClientVO implements Serializable {
     private String name;
     private String cellphone;
     private String mail;
-    private ArrayList<PetVO> petList;
     private String document;
+    private ArrayList<PetVO> petList;
 
     public String getName() {
         return name;

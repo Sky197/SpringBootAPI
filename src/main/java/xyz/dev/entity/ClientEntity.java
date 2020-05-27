@@ -1,6 +1,7 @@
 package xyz.dev.entity;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -8,7 +9,7 @@ import java.util.Set;
 public class ClientEntity {
 
     @Id
-    @Column(unique = true, name = "CLI_DOCUMENT", nullable = false)
+    @Column(name = "CLI_DOCUMENT", nullable = false)
     private String document;
 
     @Column(name = "CLI_PHONE", nullable = false)
@@ -21,7 +22,7 @@ public class ClientEntity {
     private String name;
 
     @OneToMany(mappedBy = "clientEntity", cascade = CascadeType.ALL)
-    private Set<PetEntity> pet;
+    private List<PetEntity> pet;
 
     public String getDocument() {
         return document;
@@ -55,11 +56,11 @@ public class ClientEntity {
         this.name = name;
     }
 
-    public Set<PetEntity> getPet() {
+    public List<PetEntity> getPet() {
         return pet;
     }
 
-    public void setPet(Set<PetEntity> pet) {
+    public void setPet(List<PetEntity> pet) {
         this.pet = pet;
     }
 }

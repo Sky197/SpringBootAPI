@@ -6,5 +6,4 @@ import xyz.dev.entity.ClientEntity;
 
 @Repository
 public interface ClientRepository extends JpaRepository<ClientEntity, String> {
-
 }
